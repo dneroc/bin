@@ -1,0 +1,41 @@
+#!/bin/sh
+
+wDir=$1*
+currentPape=$(awk 'BEGIN{FS="/"};/feh/{print substr($NF, 1, length($NF)-2)}' ~/.fehbg)
+nextPapeSwitch=false
+firstPapeSwitch=false
+
+echo "CURRENT WALLPAPER: "
+echo $currentPape
+
+
+for file in $wDir;
+do    
+  
+    file=$(basename "$file")
+
+    if [ "$firstPapeSwitch" = false ] ;
+    then
+        firstPape=$file
+        firstPapeSwitch=$true
+    fi
+
+    if [ $nextPapeSwitch = true ] ;
+    then
+        nextPape="$file"
+        break;
+    fi
+
+    if [ "$file" = "$currentPape" ] ;
+    then
+        nextPapeSwitch=true
+    fi
+done
+
+if [ -n "$nextPape" ] ;
+then
+
+    feh --bg-fill $1$nextPape
+else 
+    feh --bg-fill $1$firstPape
+fi

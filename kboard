@@ -1,0 +1,13 @@
+#!/bin/sh
+
+layout=$(setxkbmap -query |  sed -n -e 's/^.*layout:     //p')
+ 
+if [ "$layout" = "gb" ] ;
+then
+    echo "Layout is now us"
+    setxkbmap us
+elif [ "$layout" = "us" ] ;
+then
+    echo "Layout is now gb"
+    setxkbmap gb
+fi

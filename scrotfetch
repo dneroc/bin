@@ -1,0 +1,15 @@
+#! /bin/sh
+
+if test -f "~/pics/desktops/rice.png"; then
+    rm ~/pics/desktops/rice.png
+fi
+currentdir=`pwd`
+folder=`basename "$currentdir"`
+screenfetch -t
+if [ "$folder" == "vex" ]; then
+    echo "[~] - "
+else
+    echo "[$folder] - "
+fi
+sleep 0.3
+scrot ~/pics/desktops/rice.png

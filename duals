@@ -1,0 +1,6 @@
+#!/bin/sh
+
+if xrandr | grep "HDMI1 connected"; then
+    ~/.screenlayout/externalOnly.sh
+fi
+~/.fehbg 
